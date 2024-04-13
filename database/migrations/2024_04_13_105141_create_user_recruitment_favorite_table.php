@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('user_recruitment_favorite', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('recruitment_id');
             $table->timestamps();
         });
     }

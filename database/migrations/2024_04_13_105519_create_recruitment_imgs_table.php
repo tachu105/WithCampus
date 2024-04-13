@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('recruitment_imgs', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('recruitment_id');
+            $table->string('img_url', 200);
             $table->timestamps();
         });
     }

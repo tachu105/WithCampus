@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('user_area_tag', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('area_tag_id');
             $table->timestamps();
         });
     }
