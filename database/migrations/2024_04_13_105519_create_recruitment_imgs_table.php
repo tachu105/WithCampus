@@ -4,6 +4,9 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+/**
+ * リクルートメントの画像を管理するテーブル
+ */
 return new class extends Migration
 {
     /**
@@ -15,8 +18,8 @@ return new class extends Migration
     {
         Schema::create('recruitment_imgs', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('recruitment_id');
-            $table->string('img_url', 200);
+            $table->foreignId('recruitment_id')->constrained('recruitments')->onDelete('cascade');
+            $table->string('img_url', 200)->unique();
             $table->timestamps();
         });
     }

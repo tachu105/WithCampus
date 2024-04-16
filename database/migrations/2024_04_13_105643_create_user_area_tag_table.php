@@ -4,6 +4,9 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+/**
+ * 各ユーザーが選択した活動エリアのタグを管理するテーブル
+ */
 return new class extends Migration
 {
     /**
@@ -13,10 +16,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('user_activity_tag', function (Blueprint $table) {
+        Schema::create('user_area_tag', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('activity_tag_id');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('area_tag_id')->constrained('area_tags')->onDelete('cascade');
+            $table->unique(['user_id', 'area_tag_id']);
             $table->timestamps();
         });
     }
@@ -28,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_activity_tag');
+        Schema::dropIfExists('user_area_tag');
     }
 };

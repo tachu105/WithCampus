@@ -4,6 +4,9 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+/**
+ * リクルート投稿情報を管理するテーブル
+ */
 return new class extends Migration
 {
     /**
@@ -13,13 +16,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('achivements', function (Blueprint $table) {
+        Schema::create('recruitments', function (Blueprint $table) {
             $table->id();
             $table->string('title', 50);
             $table->string('body', 1000);
             $table->string('reference_title', 50)->nullable()->default(null);
             $table->string('reference_url', 200)->nullable()->default(null);
-            $table->unsignedBigInteger('user_id');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -31,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('achivements');
+        Schema::dropIfExists('recruitments');
     }
 };

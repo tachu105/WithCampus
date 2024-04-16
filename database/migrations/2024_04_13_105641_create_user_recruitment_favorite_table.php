@@ -4,6 +4,9 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+/**
+ * 各ユーザーとそのユーザーが「いいね」を押した投稿IDを管理するテーブル
+ */
 return new class extends Migration
 {
     /**
@@ -15,8 +18,9 @@ return new class extends Migration
     {
         Schema::create('user_recruitment_favorite', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('recruitment_id');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('recruitment_id')->constrained('recruitments')->onDelete('cascade');
+            $table->unique(['user_id', 'recruitment_id']);
             $table->timestamps();
         });
     }

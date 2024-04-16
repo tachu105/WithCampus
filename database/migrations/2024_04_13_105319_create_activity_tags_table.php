@@ -4,6 +4,9 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+/**
+ * 活動系統のタグを管理するテーブル
+ */
 return new class extends Migration
 {
     /**
@@ -15,7 +18,7 @@ return new class extends Migration
     {
         Schema::create('activity_tags', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 20);
+            $table->string('name', 20)->unique();
             $table->timestamps();
         });
     }

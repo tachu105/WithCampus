@@ -4,6 +4,9 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+/**
+ * ユーザー情報を管理するテーブル
+ */
 return new class extends Migration
 {
     /**
@@ -18,10 +21,12 @@ return new class extends Migration
             $table->string('name', 50);
             $table->string('email', 50)->unique();
             $table->string('password', 50);
-            $table->int('group_tag_name');
+            $table->unsignedInteger('group_tag');
             $table->string('icon_img_url', 200)->nullable()->default(null);
-            $table->string('belong_univ_name', 50);
+            $table->string('belong_univ_name', 50)->nullable()->default(null);
             $table->string('rep_name', 50);
+            $table->timestamp('email_verified_at')->nullable();
+            $table->rememberToken();
             $table->timestamps();
         });
     }
