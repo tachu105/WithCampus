@@ -18,17 +18,33 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 50);
-            $table->string('email', 50)->unique();
-            $table->string('password', 50);
+            $table->string('name', 255);
+            $table->string('email', 255)->unique();
+            $table->string('password', 255);
             $table->unsignedInteger('group_tag');
-            $table->string('icon_img_url', 200)->nullable()->default(null);
-            $table->string('belong_univ_name', 50)->nullable()->default(null);
-            $table->string('rep_name', 50);
+            $table->string('icon_img_url', 255)->nullable()->default(null);
+            $table->string('belong_univ_name', 255)->nullable()->default(null);
+            $table->string('rep_name', 255);
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
+        
+        // Schema::create('users', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('name', 255);
+        //     $table->string('email', 255)->unique();
+        //     $table->string('password', 255);
+        //     $table->unsignedInteger('group_tag')->default(0);
+        //     $table->string('icon_img_url', 200)->nullable();
+        //     $table->string('belong_univ_name', 255)->nullable();
+        //     $table->string('rep_name', 255)->default("defaultvalue");
+        //     $table->timestamp('email_verified_at')->nullable();
+        //     $table->rememberToken();
+        //     $table->timestamps();
+        //     $table->softDeletes();
+        // });
     }
 
     /**

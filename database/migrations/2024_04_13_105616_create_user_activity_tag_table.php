@@ -22,6 +22,7 @@ return new class extends Migration
             $table->foreignId('activity_tag_id')->constrained('activity_tags')->onDelete('cascade');
             $table->unique(['user_id', 'activity_tag_id']);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -21,6 +21,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'group_tag',
+        'icon_img_url',
+        'belong_univ_name',
+        'rep_name'
     ];
 
     /**
@@ -41,4 +45,53 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * 活動詳細情報とのリレーションシップ
+     */
+    public function activityDetail()
+    {
+        return $this->hasMany(ActivityDetail::class);
+    }
+
+    /**
+     * 実績情報とのリレーションシップ
+     */
+    public function achievement()
+    {
+        return $this->hasMany(Achievement::class);
+    }
+
+    /**
+     * リクルート情報とのリレーションシップ
+     */
+    public function recruit()
+    {
+        return $this->hasMany(Recruit::class);
+    }
+
+    /**
+     * ユーザー・アクティビティタグの中間テーブルとのリレーションシップ
+     */
+    public function userActivityTag()
+    {
+        return $this->hasMany(UserActivityTag::class);
+    }
+
+    /**
+     * ユーザー・エリアタグの中間テーブルとのリレーションシップ
+     */
+    public function userAreaTag()
+    {
+        return $this->hasMany(UserAreaTag::class);
+    }
+
+    /**
+     * ユーザーのお気に入り情報とのリレーションシップ
+     */
+    public function userRecruitmentFavorite()
+    {
+        return $this->hasMany(UserRecruitmentFavorite::class);
+    }
+
 }
