@@ -21,6 +21,7 @@ return new class extends Migration
             $table->foreignId('activity_detail_id')->constrained('activity_details')->onDelete('cascade');
             $table->string('img_url', 200)->unique();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

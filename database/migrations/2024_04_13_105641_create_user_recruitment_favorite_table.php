@@ -22,6 +22,7 @@ return new class extends Migration
             $table->foreignId('recruitment_id')->constrained('recruitments')->onDelete('cascade');
             $table->unique(['user_id', 'recruitment_id']);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->id();
             $table->string('name', 20)->unique();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
